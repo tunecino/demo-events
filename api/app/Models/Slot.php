@@ -17,6 +17,8 @@ class Slot extends Model
         "status" => SlotStatus::class,
     ];
 
+    protected $fillable = ["status", "user_id"];
+
     public function event()
     {
         return $this->belongsTo(Event::class);

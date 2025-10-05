@@ -5,7 +5,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "format": "prettier --write ./database ./app"
+        "format": "prettier --write ./database ./app ./tests"
     },
     "devDependencies": {
         "@prettier/plugin-php": "^0.24.0",
