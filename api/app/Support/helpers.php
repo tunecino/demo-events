@@ -6,10 +6,9 @@ if (!function_exists("browser_user_id")) {
     function browser_user_id(): string
     {
         $agent = request()->header("User-Agent", "unknown");
-        $ip = request()->ip() ?? "unknown";
 
         // Create a deterministic hash
-        $hash = sha1($agent . "|" . $ip);
+        $hash = sha1($agent);
 
         // Format first 32 chars into UUID-like string
         return sprintf(
