@@ -28,9 +28,15 @@ class SlotController extends Controller
             );
         }
 
-        $slot->update(["status" => SlotStatus::Hold->value]);
+        $slot->update([
+            "status" => SlotStatus::Hold->value,
+            "user_id" => browser_user_id(),
+        ]);
 
-        return response()->json(["status" => "hold"]);
+        return response()->json([
+            "status" => SlotStatus::Hold->name,
+            "user_id" => $slot->user_id,
+        ]);
     }
 
     public function unhold(string $eventId, string $slotId)
@@ -80,13 +86,19 @@ class SlotController extends Controller
             );
         }
 
+        $currentUserId = browser_user_id();
+
+        if ($slot->user_id !== $currentUserId) {
+            return response()->json(["message" => "Forbidden action"], 403);
+        }
+
         $slot->update([
             "status" => SlotStatus::Booked->value,
-            "user_id" => browser_user_id(),
+            "user_id" => $currentUserId,
         ]);
 
         return response()->json([
-            "status" => "booked",
+            "status" => SlotStatus::Booked->name,
             "user_id" => $slot->user_id,
         ]);
     }
