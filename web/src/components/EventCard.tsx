@@ -29,14 +29,12 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
      * check if user has booked any of the slots
      * so the card could be marked as booked.
      */
-      browserUserId().then((userId) => {
-        console.log(userId);
-        const booked = event.slots.some(slot => slot.user_id === userId);
-        setIsBooked(booked);
-      });
-    }, [event?.slots]);
+    browserUserId().then((userId) => {
+      const booked = event.slots.some((slot) => slot.user_id === userId);
+      setIsBooked(booked);
+    });
+  }, [event?.slots]);
 
-  
   const availableSlots = event.slots.filter(
     (slot: Slot) => slot.status === "available",
   );
@@ -45,7 +43,6 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
     amount: event.amount,
     currency: event.currency as Currency,
   }).toFormat();
-
 
   const dispatch = useAppDispatch();
 
@@ -118,19 +115,28 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
                   <div className="flex justify-between items-center mt-auto">
                     <div className="flex flex-col">
                       {!isBooked && availableSeats === 0 && (
-                        <button className="btn btn-warning btn-soft" onClick={handleFlip}>
-                           Sold Out
-                      </button>
+                        <button
+                          className="btn btn-warning btn-soft"
+                          onClick={handleFlip}
+                        >
+                          Sold Out
+                        </button>
                       )}
                       {!isBooked && availableSeats > 0 && (
-                        <button className="btn btn-primary" onClick={handleFlip}>
-                        Book it
-                      </button>
+                        <button
+                          className="btn btn-primary"
+                          onClick={handleFlip}
+                        >
+                          Book it
+                        </button>
                       )}
                       {isBooked && (
-                        <button className="btn btn-success btn-soft" onClick={handleFlip}>
-                        Booked
-                      </button>
+                        <button
+                          className="btn btn-success btn-soft"
+                          onClick={handleFlip}
+                        >
+                          Booked
+                        </button>
                       )}
                     </div>
 
