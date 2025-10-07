@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums;
+namespace Src\Event\Domain\Enums;
 
 enum SlotStatus: int
 {

@@ -2,7 +2,7 @@
 
 use App\Models\Event;
 use App\Models\Slot;
-use App\Enums\SlotStatus;
+use Src\Event\Domain\Enums\SlotStatus;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);

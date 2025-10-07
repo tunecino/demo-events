@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Event;
 use App\Models\Slot;
-use App\Enums\SlotStatus;
+use Src\Event\Domain\Enums\SlotStatus;
 
 class SlotFactory extends Factory
 {
